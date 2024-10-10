@@ -1,0 +1,13 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Editar Sala</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+        <a href="{% url 'listar_salas' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

@@ -8,10 +8,55 @@
     <title>Horarios</title>
 </head>
 <body>
-    <h1>INDEXXXX</h1>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'horarios' %}">INACAP</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              
+              <!-- Secciones Menu -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="seccionesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Secciones
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="seccionesDropdown">
+                  <li><a class="dropdown-item" href="{% url 'importar_secciones' %}">Importar Secciones</a></li>
+                  <li><a class="dropdown-item" href="{% url 'listar_secciones' %}">Listar Secciones</a></li>
+                  <li><a class="dropdown-item" href="{% url 'crear_seccion' %}">Crear Sección</a></li>
+                </ul>
+              </li>
+              
+              <!-- Salas Menu -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="salasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Salas
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="salasDropdown">
+                  <li><a class="dropdown-item" href="{% url 'importar_salas' %}">Importar Salas</a></li>
+                  <li><a class="dropdown-item" href="{% url 'listar_salas' %}">Listar Salas</a></li>
+                  <li><a class="dropdown-item" href="{% url 'crear_salas' %}">Crear Sala</a></li>
+                </ul>
+              </li>
+              
+              <!-- Horario Menu -->
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'horarios' %}">Horario</a>
+              </li>
+      
+            </ul>
+          </div>
+        </div>
+      </nav>
     <header></header>
-    {% block content %}
-    {% endblock %}
+    
+        <!-- Esto le da un margen de 4 unidades (my-4) en todos los lados -->
+        {% block content %}
+        {% endblock %}
+    
     <footer></footer>
 
 

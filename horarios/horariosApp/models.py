@@ -33,4 +33,36 @@ class Sala(models.Model):
     cupo_estandar = models.IntegerField()
 
 
+class Bloque(models.Model):
+    DIA_SEMANA_CHOICES = [
+        ('lunes', 'Lunes'),
+        ('martes', 'Martes'),
+        ('miércoles', 'Miércoles'),
+        ('jueves', 'Jueves'),
+        ('viernes', 'Viernes'),
+    ]
+    
+    TIPO_BLOQUE_CHOICES = [
+        ('diurno', 'Diurno'),
+        ('vespertino', 'Vespertino'),
+    ]
+    
+    dia = models.CharField(max_length=10, choices=DIA_SEMANA_CHOICES)
+    hora_inicio = models.TimeField()
+    hora_fin = models.TimeField()
+    tipo = models.CharField(max_length=10, choices=TIPO_BLOQUE_CHOICES)
 
+    def __str__(self):
+        return f"{self.dia}: {self.hora_inicio} - {self.hora_fin} ({self.tipo})"
+
+class DisponibilidadSala(models.Model):
+    sala = models.ForeignKey(Sala, on_delete=models.CASCADE)
+    bloque = models.ForeignKey(Bloque, on_delete=models.CASCADE)
+    disponible = models.BooleanField(default=True)  # True si la sala está disponible en ese bloque
+
+    class Meta:
+        unique_together = ('sala', 'bloque')  # Evitar duplicados de disponibilidad
+
+    def __str__(self):
+        estado = "Disponible" if self.disponible else "No disponible"
+        return f"{self.sala.descripcion} - {self.bloque} : {estado}"

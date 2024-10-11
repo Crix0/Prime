@@ -1,0 +1,63 @@
+{% extends 'index.html' %}
+{% block content %}
+    
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Horario de Sala</h2>
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Bloques</th>
+                    <th>Lunes</th>
+                    <th>Martes</th>
+                    <th>Miércoles</th>
+                    <th>Jueves</th>
+                    <th>Viernes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for h_inicio, h_fin in horarios_unicos %}
+                <tr>
+                    <td><strong>{{ h_inicio }} - {{ h_fin }}</strong></td>
+                    <td class="text-center">
+                        {% for bloque in horario.lunes %}
+                            {% if bloque.hora_inicio == h_inicio %}
+                                <!-- <span class="badge badge-primary">{{ bloque.tipo }}</span> -->
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td class="text-center">
+                        {% for bloque in horario.martes %}
+                            {% if bloque.hora_inicio == h_inicio %}
+                                <!-- <span class="badge badge-primary">{{ bloque.tipo }}</span> -->
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td class="text-center">
+                        {% for bloque in horario.miercoles %}
+                            {% if bloque.hora_inicio == h_inicio %}
+                                <!-- <span class="badge badge-primary">{{ bloque.tipo }}</span> -->
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td class="text-center">
+                        {% for bloque in horario.jueves %}
+                            {% if bloque.hora_inicio == h_inicio %}
+                                <!-- <span class="badge badge-primary">{{ bloque.tipo }}</span> -->
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td class="text-center">
+                        {% for bloque in horario.viernes %}
+                            {% if bloque.hora_inicio == h_inicio %}
+                                <!-- <span class="badge badge-primary">{{ bloque.tipo }}</span> -->
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+{% endblock %}

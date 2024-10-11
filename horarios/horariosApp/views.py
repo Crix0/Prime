@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Seccion, Sala
+from .models import Seccion, Sala, Bloque
+
 from .forms import SeccionForm, SalaForm
 
 import pandas as pd
@@ -7,10 +8,22 @@ import pandas as pd
 def inicio(request):
     return render(request,'index.html')
 
-# 
-# 
-# 
-# 
+def horarios_view(request):
+    bloques = Bloque.objects.all().order_by('hora_inicio')
+    
+    # Obtener los bloques únicos (puedes también usar `distinct()`)
+    horarios_unicos = bloques.values_list('hora_inicio', 'hora_fin').distinct()
+    
+    dias = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes']
+    horario = {dia: [] for dia in dias}
+
+    for bloque in bloques:
+        horario[bloque.dia].append(bloque)
+
+    return render(request, 'horarios/horario.html', {'horario': horario, 'horarios_unicos': horarios_unicos})
+
+
+
 
 # CRUD para Secciones
 def listar_secciones(request):

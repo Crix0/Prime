@@ -6,7 +6,11 @@
 <div class="container-fluid mt-4">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h2>Listado de Salas</h2>
-        <a href="{% url 'crear_salas' %}" class="btn btn-primary">Agregar Nueva Sala</a>
+        <div>
+            <a href="{% url 'crear_salas' %}" class="btn btn-primary">Agregar Nueva Sala</a>
+            <a href="{% url 'reset_sala' %}" class="btn btn-danger">reset</a>
+        </div>
+        
     </div>
 
     <!-- Tabla con scroll horizontal y que ocupe toda la pantalla -->

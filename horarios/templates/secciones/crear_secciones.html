@@ -2,12 +2,124 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h2>Crear Nueva Sección</h2>
+    <h2 class="mb-4">Crear Nueva Sección</h2>
     <form method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Guardar</button>
-        <a href="{% url 'listar_secciones' %}" class="btn btn-secondary">Cancelar</a>
+        
+        <div class="form-group p-1">
+            <label for="{{ form.programa_estudio.id_for_label }}" class="font-weight-bold">Programa de Estudio</label>
+            {{ form.programa_estudio }}
+        </div>
+        
+        <div class="form-group p-1">
+            <label for="{{ form.mencion.id_for_label }}" class="font-weight-bold">Mención</label>
+            {{ form.mencion }}
+        </div>
+
+        <div class="form-group p-1">
+            <label for="{{ form.plan.id_for_label }}" class="font-weight-bold">Plan</label>
+            {{ form.plan }}
+        </div>
+
+        <div class="form-group p-1">
+            <label for="{{ form.semestre.id_for_label }}" class="font-weight-bold">Semestre</label>
+            {{ form.semestre }}
+        </div>
+
+        <div class="form-group p-1">
+            <label for="{{ form.cod_asignatura.id_for_label }}" class="font-weight-bold">Código Asignatura</label>
+            {{ form.cod_asignatura }}
+        </div>
+
+        <div class="form-group p-1">
+            <label for="{{ form.asignatura.id_for_label }}" class="font-weight-bold">Asignatura</label>
+            {{ form.asignatura }}
+        </div>
+
+        <div class="form-group p-1">
+            <label for="{{ form.hrs_asignatura.id_for_label }}" class="font-weight-bold">Horas Asignatura</label>
+            {{ form.hrs_asignatura }}
+        </div>
+
+        <div class="form-group p-1">
+            <label for="{{ form.seccion.id_for_label }}" class="font-weight-bold">Sección</label>
+            {{ form.seccion }}
+        </div>
+
+        <div class="form-group p-1">
+            <label for="{{ form.jornada.id_for_label }}" class="font-weight-bold">Jornada</label>
+            {{ form.jornada }}
+        </div>
+
+        <div class="form-group p-1">
+            <label for="{{ form.cupo.id_for_label }}" class="font-weight-bold">Cupo</label>
+            {{ form.cupo }}
+        </div>
+
+        <div class="form-group p-1">
+            <label for="{{ form.cant_alumnos.id_for_label }}" class="font-weight-bold">Cantidad de Alumnos</label>
+            {{ form.cant_alumnos }}
+        </div>
+
+        <div class="form-group p-1">
+            <label for="{{ form.modalidad.id_for_label }}" class="font-weight-bold">Modalidad</label>
+            {{ form.modalidad }}
+        </div>
+
+        <div class="form-group p-1">
+            <label for="{{ form.subseccion.id_for_label }}" class="font-weight-bold">Subsección</label>
+            {{ form.subseccion }}
+        </div>
+
+        <div class="form-group p-1">
+            <label for="{{ form.tipo_subseccion.id_for_label }}" class="font-weight-bold">Tipo Subsección</label>
+            {{ form.tipo_subseccion }}
+        </div>
+
+        <div class="form-group p-1">
+            <label for="{{ form.alumnos_cft.id_for_label }}" class="font-weight-bold">Alumnos CFT</label>
+            {{ form.alumnos_cft }}
+        </div>
+
+        <div class="form-group p-1">
+            <label for="{{ form.alumnos_ip.id_for_label }}" class="font-weight-bold">Alumnos IP</label>
+            {{ form.alumnos_ip }}
+        </div>
+
+        <div class="form-group p-1">
+            <label for="{{ form.alumnos_utc.id_for_label }}" class="font-weight-bold">Alumnos UTC</label>
+            {{ form.alumnos_utc }}
+        </div>
+
+        <div class="form-group p-1">
+            <label for="{{ form.estado_seccion.id_for_label }}" class="font-weight-bold">Estado Sección</label>
+            {{ form.estado_seccion }}
+        </div>
+
+        <div class="form-group p-1">
+            <label for="{{ form.horas_plan_seccion_subseccion.id_for_label }}" class="font-weight-bold">Horas Plan Sección/Subsección</label>
+            {{ form.horas_plan_seccion_subseccion }}
+        </div>
+
+        <div class="form-group p-1">
+            <label for="{{ form.hrs_planificadas.id_for_label }}" class="font-weight-bold">Horas Planificadas</label>
+            {{ form.hrs_planificadas }}
+        </div>
+
+        <div class="form-group p-1">
+            <label for="{{ form.fecha_inicio.id_for_label }}" class="font-weight-bold">Fecha de Inicio</label>
+            {{ form.fecha_inicio }}
+        </div>
+
+        <div class="form-group p-1">
+            <label for="{{ form.fecha_termino.id_for_label }}" class="font-weight-bold">Fecha de Término</label>
+            {{ form.fecha_termino }}
+        </div>
+
+        <div class="mt-4">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="{% url 'listar_secciones' %}" class="btn btn-secondary ml-2">Cancelar</a>
+        </div>
     </form>
 </div>
 {% endblock %}

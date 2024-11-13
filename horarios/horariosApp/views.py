@@ -3,11 +3,21 @@ from .models import Seccion, Sala, Bloque
 
 from .forms import SeccionForm, SalaForm
 
+
+from django.http import HttpResponse
+
+from .utils.reset_sala import reset_sala_table
+from .utils.reset_seccion import reset_seccion_table
+
+
+
 import pandas as pd
 # Create your views here.
 def inicio(request):
     return render(request,'index.html')
 
+
+# Vista Bloque
 def horarios_view(request):
     bloques = Bloque.objects.all().order_by('hora_inicio')
     
@@ -213,7 +223,16 @@ def importar_salas(request):
 
     return render(request, 'salas/importar_salas.html')
 
-# 
-# 
-# 
-# 
+def reset_seccion(request):
+    # Ejecutar la función que reinicia la tabla
+    reset_seccion_table()
+    
+    # Retornar una respuesta indicando que se ha realizado correctamente
+    return HttpResponse("La tabla 'Sección' ha sido reiniciada exitosamente.")
+
+def reset_sala(request):
+    # Ejecutar la función que reinicia la tabla
+    reset_sala_table()
+    
+    # Retornar una respuesta indicando que se ha realizado correctamente
+    return HttpResponse("La tabla 'Sala' ha sido reiniciada exitosamente.")

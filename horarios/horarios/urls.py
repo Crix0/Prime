@@ -29,6 +29,7 @@ urlpatterns = [
     path('crear_secciones', views.crear_secciones, name='crear_seccion'),
     path('secciones/editar/<int:id>/', views.editar_secciones, name='editar_secciones'),
     path('secciones/eliminar/<int:id>/', views.eliminar_secciones, name='eliminar_secciones'),
+    path('reset-seccion/', views.reset_seccion, name='reset_seccion'),
 
     #SALAS
     path('importar_salas/', views.importar_salas, name='importar_salas'),
@@ -36,6 +37,7 @@ urlpatterns = [
     path('crear_salas', views.crear_salas, name='crear_salas'),
     path('salas/editar/<int:id>/', views.editar_salas, name='editar_salas'),
     path('salas/eliminar/<int:id>/', views.eliminar_salas, name='eliminar_salas'),
+    path('reset-sala/', views.reset_sala, name='reset_sala'),
 
 
     #HORARIO

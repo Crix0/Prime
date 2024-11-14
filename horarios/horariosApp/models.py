@@ -9,6 +9,7 @@ class Seccion(models.Model):
     asignatura = models.CharField(max_length=100)
     hrs_asignatura = models.IntegerField()
     seccion = models.CharField(max_length=10)
+    cant_bloques = models.IntegerField(default=0)
     jornada = models.CharField(max_length=50)
     cupo = models.IntegerField()
     cant_alumnos = models.IntegerField()
@@ -23,6 +24,7 @@ class Seccion(models.Model):
     hrs_planificadas = models.IntegerField()
     fecha_inicio = models.DateField()
     fecha_termino = models.DateField()
+    
 
 class Sala(models.Model):
     codigo_iso = models.CharField(max_length=10)
@@ -66,3 +68,13 @@ class DisponibilidadSala(models.Model):
     def __str__(self):
         estado = "Disponible" if self.disponible else "No disponible"
         return f"{self.sala.descripcion} - {self.bloque} : {estado}"
+
+class Horario(models.Model):
+    seccion = models.ForeignKey(Seccion, on_delete=models.CASCADE)
+    disponibilidad_sala = models.ForeignKey(DisponibilidadSala, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ('seccion', 'disponibilidad_sala')  # Evitar duplicados de asignación
+
+    def __str__(self):
+        return f"Sección: {self.seccion.asignatura} ({self.seccion.seccion}) - Sala: {self.disponibilidad_sala.sala}"

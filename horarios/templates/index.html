@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <title>Horarios</title>
 </head>
-<body>
+<body class="bg-dark text-light">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
         <div class="container-fluid">
@@ -27,6 +27,7 @@
                   <li><a class="dropdown-item" href="{% url 'importar_secciones' %}">Importar Secciones</a></li>
                   <li><a class="dropdown-item" href="{% url 'listar_secciones' %}">Listar Secciones</a></li>
                   <li><a class="dropdown-item" href="{% url 'crear_seccion' %}">Crear Sección</a></li>
+                  <li><a class="dropdown-item" href="{% url 'prueba' %}">prueba</a></li>
                 </ul>
               </li>
               
@@ -51,15 +52,29 @@
           </div>
         </div>
       </nav>
+      
     <header></header>
     
-        <!-- Esto le da un margen de 4 unidades (my-4) en todos los lados -->
-        {% block content %}
-        {% endblock %}
+
+    <!-- Cuerpo principal -->
+    <div class="d-flex flex-column min-vh-100">
+        <!-- Contenedor principal con espacio reservado para el contenido -->
+        <div>
+            {% block content %}
+            {% endblock %}
+        </div>
     
-    <footer></footer>
-
-
+        <!-- Footer -->
+        <footer class="bg-dark text-light py-3 mt-auto">
+            <div class="container text-center">
+                <small>&copy; Enso Stefano Guidotti Robles - Todos los derechos reservados </small>
+            </div>
+        </footer>
+    </div>
+    
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    
+    
+    
 </body>
 </html>

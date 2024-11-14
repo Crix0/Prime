@@ -1,6 +1,6 @@
 from horariosApp.models import Sala, Bloque, DisponibilidadSala
 
-def rellenar_disponibilidad():
+def rellenar():
     salas = Sala.objects.all()  # Obtiene todas las salas
     bloques = Bloque.objects.all()  # Obtiene todos los bloques
 

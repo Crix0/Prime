@@ -8,6 +8,9 @@ from django.http import HttpResponse
 
 from .utils.reset_sala import reset_sala_table
 from .utils.reset_seccion import reset_seccion_table
+from .utils.generador_bloque import asignar_bloques
+from .utils.rellenar_disponibilidad import rellenar
+from .utils.prueba import asignar_horario_a_seccion
 
 
 
@@ -236,3 +239,24 @@ def reset_sala(request):
     
     # Retornar una respuesta indicando que se ha realizado correctamente
     return HttpResponse("La tabla 'Sala' ha sido reiniciada exitosamente.")
+
+def asignar(request):
+    # Ejecutar la función que reinicia la tabla
+    asignar_bloques()
+    
+    # Retornar una respuesta indicando que se ha realizado correctamente
+    return HttpResponse("se crearon los bloques correctamente.")
+
+def rellenar_disponibilidad(request):
+    # Ejecutar la función que reinicia la tabla
+    rellenar()
+    
+    # Retornar una respuesta indicando que se ha realizado correctamente
+    return HttpResponse("se rellenaron los datos correctamente.")
+
+def prueba(request):
+    # Ejecutar la función que reinicia la tabla
+    asignar_horario_a_seccion(1)
+    
+    # Retornar una respuesta indicando que se ha realizado correctamente
+    return HttpResponse("prueba completada.")

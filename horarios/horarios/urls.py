@@ -30,6 +30,7 @@ urlpatterns = [
     path('secciones/editar/<int:id>/', views.editar_secciones, name='editar_secciones'),
     path('secciones/eliminar/<int:id>/', views.eliminar_secciones, name='eliminar_secciones'),
     path('reset-seccion/', views.reset_seccion, name='reset_seccion'),
+    path('asignar/', views.asignar, name='asignar'),
 
     #SALAS
     path('importar_salas/', views.importar_salas, name='importar_salas'),
@@ -43,6 +44,9 @@ urlpatterns = [
     #HORARIO
     path('horario/', views.horarios_view, name='horarios'),
 
-
+    #horariosala
+    path('rellenar-disponibilidad/', views.rellenar_disponibilidad, name='rellenar_disponibilidad'),
+    # pruba
+    path('prueba/', views.prueba, name='prueba'),
 ]
 

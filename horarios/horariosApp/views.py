@@ -151,33 +151,37 @@ def importar_secciones(request):
         
         df.fillna(0, inplace=True)
 
+        # Definir las horas válidas para la importación
+        horas_validas = [54, 72, 90, 108]
        
         # Iterar sobre el DataFrame y guardar los datos en la base de datos
         for _, row in df.iterrows():
-            Seccion.objects.create(
-                programa_estudio=row['Programa de Estudio'],
-                mencion=row['Mención'],
-                plan=row['Plan'],
-                semestre=row['Semestre'],
-                cod_asignatura=row['Cód Asignatura'],
-                asignatura=row['Asignatura'],
-                hrs_asignatura=row['Hrs Asignatura'],
-                seccion=row['Sección'],
-                jornada=row['Jornada'],
-                cupo=row['Cupo'],
-                cant_alumnos=row['Cant. Alumnos'],
-                modalidad=row['Modalidad'],
-                subseccion=row['Subsección'],
-                tipo_subseccion=row['Tipo Subsección'],
-                alumnos_cft=row['Alumnos CFT'],
-                alumnos_ip=row['Alumnos IP'],
-                alumnos_utc=row['Alumnos UTC'],
-                estado_seccion=row['Estado Sección'],
-                horas_plan_seccion_subseccion=row['Horas Plan. Sección + Subscción'],
-                hrs_planificadas=row['Hrs Planificadas'],
-                fecha_inicio=row['Fecha Inicio'],
-                fecha_termino=row['Fecha Término'],
-            )
+            # Verificar si las horas de la asignatura están en las horas válidas
+            if row['Hrs Asignatura'] in horas_validas:
+                Seccion.objects.create(
+                    programa_estudio=row['Programa de Estudio'],
+                    mencion=row['Mención'],
+                    plan=row['Plan'],
+                    semestre=row['Semestre'],
+                    cod_asignatura=row['Cód Asignatura'],
+                    asignatura=row['Asignatura'],
+                    hrs_asignatura=row['Hrs Asignatura'],
+                    seccion=row['Sección'],
+                    jornada=row['Jornada'],
+                    cupo=row['Cupo'],
+                    cant_alumnos=row['Cant. Alumnos'],
+                    modalidad=row['Modalidad'],
+                    subseccion=row['Subsección'],
+                    tipo_subseccion=row['Tipo Subsección'],
+                    alumnos_cft=row['Alumnos CFT'],
+                    alumnos_ip=row['Alumnos IP'],
+                    alumnos_utc=row['Alumnos UTC'],
+                    estado_seccion=row['Estado Sección'],
+                    horas_plan_seccion_subseccion=row['Horas Plan. Sección + Subscción'],
+                    hrs_planificadas=row['Hrs Planificadas'],
+                    fecha_inicio=row['Fecha Inicio'],
+                    fecha_termino=row['Fecha Término'],
+                )
         
         return redirect('listar_secciones')  # Redirige a la página de listado después de la importación
 

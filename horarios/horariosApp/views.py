@@ -235,29 +235,29 @@ def reset_seccion(request):
     reset_seccion_table()
     
     # Retornar una respuesta indicando que se ha realizado correctamente
-    return HttpResponse("La tabla 'Sección' ha sido reiniciada exitosamente.")
+    return redirect('listar_secciones') 
 
 def reset_sala(request):
     # Ejecutar la función que reinicia la tabla
     reset_sala_table()
     
     # Retornar una respuesta indicando que se ha realizado correctamente
-    return HttpResponse("La tabla 'Sala' ha sido reiniciada exitosamente.")
+    return redirect('listar_salas') 
 
 def asignar(request):
     # Ejecutar la función que reinicia la tabla
     asignar_bloques()
     
     # Retornar una respuesta indicando que se ha realizado correctamente
-    return HttpResponse("se crearon los bloques correctamente.")
+    
+    return redirect('listar_secciones') 
 
 def rellenar_disponibilidad(request):
     # Ejecutar la función que reinicia la tabla
     rellenar()
     
     # Retornar una respuesta indicando que se ha realizado correctamente
-    return HttpResponse("se rellenaron los datos correctamente.")
-
+    return redirect('listar_salas') 
 def prueba(request):
     # Ejecutar la función que reinicia la tabla
     asignar_horario_a_seccion(1)

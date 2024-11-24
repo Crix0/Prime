@@ -4,76 +4,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    
     <title>Horarios</title>
 </head>
-<body class="bg-dark text-light">
+<body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="{% url 'horarios' %}">INACAP</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              
-              <!-- Secciones Menu -->
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="seccionesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Secciones
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="seccionesDropdown">
-                  <li><a class="dropdown-item" href="{% url 'importar_secciones' %}">Importar Secciones</a></li>
-                  <li><a class="dropdown-item" href="{% url 'listar_secciones' %}">Listar Secciones</a></li>
-                  <li><a class="dropdown-item" href="{% url 'crear_seccion' %}">Crear Sección</a></li>
-                  <li><a class="dropdown-item" href="{% url 'prueba' %}">prueba</a></li>
-                </ul>
-              </li>
-              
-              <!-- Salas Menu -->
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="salasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Salas
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="salasDropdown">
-                  <li><a class="dropdown-item" href="{% url 'importar_salas' %}">Importar Salas</a></li>
-                  <li><a class="dropdown-item" href="{% url 'listar_salas' %}">Listar Salas</a></li>
-                  <li><a class="dropdown-item" href="{% url 'crear_salas' %}">Crear Sala</a></li>
-                </ul>
-              </li>
-              
-              <!-- Horario Menu -->
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'horarios' %}">Horario</a>
-              </li>
-      
-            </ul>
-          </div>
-        </div>
-      </nav>
-      
-    <header></header>
-    
+  <!-- Barra de navegación lateral -->
+  <!-- Barra lateral -->
+   
+  <div class="sidebar">
+    <a href="{% url 'horarios' %}" class="active">
+        <div class="icon">🏠</div>
+        <div class="text">Inicio</div>
+    </a>
 
-    <!-- Cuerpo principal -->
-    <div class="d-flex flex-column min-vh-100">
-        <!-- Contenedor principal con espacio reservado para el contenido -->
-        <div>
-            {% block content %}
-            {% endblock %}
-        </div>
-    
-        <!-- Footer -->
-        <footer class="bg-dark text-light py-3 mt-auto">
-            <div class="container text-center">
-                <small>&copy; Enso Stefano Guidotti Robles - Todos los derechos reservados </small>
-            </div>
-        </footer>
+    <!-- Secciones -->
+    <a href="#" data-bs-toggle="collapse" data-bs-target="#submenuSecciones" aria-expanded="false" aria-controls="submenuSecciones">
+        <div class="icon">📊</div>
+        <div class="text">Secciones</div>
+    </a>
+    <div class="collapse submenu" id="submenuSecciones">
+        <a href="{% url 'importar_secciones' %}">Importar Secciones</a>
+        <a href="{% url 'listar_secciones' %}">Listar Secciones</a>
+        <a href="{% url 'crear_seccion' %}">Crear Sección</a>
     </div>
+
+    <!-- Salas -->
+    <a href="#" data-bs-toggle="collapse" data-bs-target="#submenuSalas" aria-expanded="false" aria-controls="submenuSalas">
+        <div class="icon">🏫</div>
+        <div class="text">Salas</div>
+    </a>
+    <div class="collapse submenu" id="submenuSalas">
+        <a href="{% url 'importar_salas' %}">Importar Salas</a>
+        <a href="{% url 'listar_salas' %}">Listar Salas</a>
+        <a href="{% url 'crear_salas' %}">Crear Sala</a>
+    </div>
+
+    <!-- Horario -->
+    <a href="{% url 'horarios' %}">
+        <div class="icon">📅</div>
+        <div class="text">Horario</div>
+    </a>
+
+    <!-- Ajustes -->
+    <a href="#" data-bs-toggle="collapse" data-bs-target="#submenuAjustes" aria-expanded="false" aria-controls="submenuAjustes">
+        <div class="icon">⚙️</div>
+        <div class="text">Ajustes</div>
+    </a>
+    <div class="collapse submenu" id="submenuAjustes">
+        <a href="#{% url 'prueba' %}">Prueba</a>
+        <a href="#">Opción 2</a>
+    </div>
+
+</div>
+      
+<header class="header d-flex align-items-center bg-dark text-white py-3">
+    <!-- Logo de INACAP con enlace -->
+    <a href="{% url 'horarios' %}" class="me-3">
+        <img src="{% static 'img/inacap.png' %}" alt="INACAP Logo" class="logo">
+    </a>
     
+    <!-- Título del sistema -->
+    <h1 class="h4 mb-0">Planificador de Horarios - INACAP</h1>
+</header>
+
+
+    
+      
+  <div class="content">
+    {% block content %}
+    
+    {% endblock %}
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <small>&copy; Enso Stefano Guidotti Robles - Todos los derechos reservados</small>
+    </div>
+</footer>
+  
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     
     
 </body>

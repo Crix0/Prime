@@ -78,3 +78,23 @@ class Horario(models.Model):
 
     def __str__(self):
         return f"Sección: {self.seccion.asignatura} ({self.seccion.seccion}) - Sala: {self.disponibilidad_sala.sala}"
+
+
+class VistaHorario(models.Model):
+    horario_id = models.IntegerField()
+    cod_asignatura = models.CharField(max_length=10)
+    asignatura = models.CharField(max_length=100)
+    hrs_asignatura = models.IntegerField()
+    seccion = models.CharField(max_length=10)
+    cant_bloques = models.IntegerField()
+    sala_codigo_iso = models.CharField(max_length=10)
+    tipo_sala = models.CharField(max_length=100)
+    sala_disponible = models.BooleanField()
+    bloque_dia = models.CharField(max_length=10)
+    bloque_hora_inicio = models.TimeField()
+    bloque_hora_fin = models.TimeField()
+    bloque_tipo = models.CharField(max_length=10)
+
+    class Meta:
+        managed = False  # No gestionado por Django, ya que es una vista
+        db_table = "vista_horarios"  # Nombre exacto de la vista en la base de datos

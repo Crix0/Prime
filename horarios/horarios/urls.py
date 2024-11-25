@@ -21,7 +21,7 @@ from horariosApp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     #INDEX
-    path('', views.importar_secciones, name='inicio'),
+    path('', views.horarios_view, name='inicio'),
     
     #SECCIONES
     path('importar_secciones/', views.importar_secciones, name='importar_secciones'),
@@ -43,6 +43,7 @@ urlpatterns = [
 
     #HORARIO
     path('horario/', views.horarios_view, name='horarios'),
+    path("horario/", views.mostrar_horarios, name="mostrar_horarios"),
 
     #horariosala
     path('rellenar-disponibilidad/', views.rellenar_disponibilidad, name='rellenar_disponibilidad'),

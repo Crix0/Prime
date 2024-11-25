@@ -1,5 +1,6 @@
+from django.db import connection
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Seccion, Sala, Bloque
+from .models import Seccion, Sala, Bloque, VistaHorario
 
 from .forms import SeccionForm, SalaForm
 
@@ -36,12 +37,38 @@ def horarios_view(request):
     return render(request, 'horarios/horario.html', {'horario': horario, 'horarios_unicos': horarios_unicos})
 
 
+def mostrar_horarios(request):
+    # Obtener todos los registros de la vista
+    horarios = VistaHorario.objects.all()
+
+    # Organizar por día para facilitar la visualización
+    horarios_por_dia = {
+        "lunes": [],
+        "martes": [],
+        "miércoles": [],
+        "jueves": [],
+        "viernes": [],
+    }
+
+    for horario in horarios:
+        if horario.bloque_dia in horarios_por_dia:
+            horarios_por_dia[horario.bloque_dia].append(horario)
+
+    return render(request, "horarios/horario.html", {"horarios_por_dia": horarios_por_dia})
+
+
 
 
 # CRUD para Secciones
 def listar_secciones(request):
     secciones = Seccion.objects.all()
-    return render(request, 'secciones/listar_secciones.html', {'secciones': secciones})
+    return render(request, 'secciones/listar_secciones.html', {
+        'secciones': secciones,
+        'current_section': 'secciones',
+        'active_page': 'listar_secciones',
+    })
+
+
 
 def crear_secciones(request):
     if request.method == 'POST':
@@ -51,7 +78,11 @@ def crear_secciones(request):
             return redirect('listar_secciones')
     else:
         form = SeccionForm()
-    return render(request, 'secciones/crear_secciones.html', {'form': form})
+    return render(request, 'secciones/crear_secciones.html', {
+        'form': form,
+        'current_section': 'secciones',
+        'active_page': 'crear_secciones',
+    })
 
 
 def editar_secciones(request, id):
@@ -82,8 +113,11 @@ def eliminar_secciones(request, id):
 
 def listar_salas(request):
     salas = Sala.objects.all()
-    return render(request, 'salas/listar_salas.html', {'salas': salas})
-
+    return render(request, 'salas/listar_salas.html', {
+        'salas': salas,
+        'current_section': 'salas',
+        'active_page': 'listar_salas',
+    })
 
 def crear_salas(request):
     if request.method == 'POST':
@@ -93,7 +127,11 @@ def crear_salas(request):
             return redirect('listar_salas')
     else:
         form = SalaForm()
-    return render(request, 'salas/crear_salas.html', {'form': form})
+    return render(request, 'salas/crear_salas.html', {
+        'form': form,
+        'current_section': 'salas',
+        'active_page': 'crear_salas',
+    })
 
 
 
@@ -185,7 +223,10 @@ def importar_secciones(request):
         
         return redirect('listar_secciones')  # Redirige a la página de listado después de la importación
 
-    return render(request, 'secciones/importar_secciones.html')
+    return render(request, 'secciones/importar_secciones.html', {
+        'current_section': 'secciones',
+        'active_page': 'importar_secciones',
+    })
 
 def importar_salas(request):
     if request.method == 'POST' and request.FILES['file']:
@@ -228,7 +269,10 @@ def importar_salas(request):
         
         return redirect('listar_salas')  # Redirige a la página de listado después de la importación
 
-    return render(request, 'salas/importar_salas.html')
+    return render(request, 'salas/importar_salas.html', {
+        'current_section': 'salas',
+        'active_page': 'importar_salas',
+    })
 
 def reset_seccion(request):
     # Ejecutar la función que reinicia la tabla

@@ -36,8 +36,17 @@ body {
     border-radius: 10px;
 }
 
+
+
 .sidebar .submenu a {
     padding-left: 30px; /* Espaciado adicional para submenús */
+}
+
+
+
+.sidebar a.active {
+    background-color: #007bff; /* Azul destacado */
+    color: white;
 }
 
 /* CONTENT STYLE */
